@@ -236,9 +236,6 @@ class _EncryptionScreenState extends State<EncryptionScreen> {
                     if (plainTextKey.currentState.validate() ||
                         cypherKey.currentState.validate() ||
                         checkImageNull()) {
-                      print(plainTextKey.currentState.validate());
-                      print(cypherKey.currentState.validate());
-                      print(!checkImageNull());
                       Analyse.showLoading(
                           context: loadingContext, key: _keyLoader);
                       print(checkImageNull());
@@ -254,11 +251,12 @@ class _EncryptionScreenState extends State<EncryptionScreen> {
                         apiResult = await dio.post(Analyse.apiUrl + 'encrypt',
                             data: formData);
                       } catch (log) {
+                        print(log);
                         Navigator.of(_keyLoader.currentContext,
                                 rootNavigator: true)
                             .pop();
                         Fluttertoast.showToast(
-                          msg: 'Plaintext or Key contain unsupported character',
+                          msg: 'Server error',
                           toastLength: Toast.LENGTH_SHORT,
                           gravity: ToastGravity.BOTTOM,
                           timeInSecForIosWeb: 1,
@@ -267,7 +265,6 @@ class _EncryptionScreenState extends State<EncryptionScreen> {
                           fontSize: 16.0,
                         );
                       }
-                      print(apiResult.toString());
                       if (apiResult.statusCode == 200) {
                         Navigator.of(_keyLoader.currentContext,
                                 rootNavigator: true)
