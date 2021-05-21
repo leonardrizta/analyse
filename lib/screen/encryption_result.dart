@@ -80,7 +80,7 @@ class _EncryptionResultState extends State<EncryptionResult> {
                     margin: EdgeInsets.symmetric(vertical: 16),
                     padding: EdgeInsets.symmetric(horizontal: 16),
                     decoration: BoxDecoration(
-                      color: Color(0xFFC4C4C4),
+                      color: Theme.of(context).primaryColor,
                       borderRadius: BorderRadius.circular(32),
                     ),
                     child: Center(
@@ -106,7 +106,7 @@ class _EncryptionResultState extends State<EncryptionResult> {
                     margin: EdgeInsets.symmetric(vertical: 16),
                     padding: EdgeInsets.symmetric(horizontal: 16),
                     decoration: BoxDecoration(
-                      color: Color(0xFFC4C4C4),
+                      color: Theme.of(context).primaryColor,
                       borderRadius: BorderRadius.circular(32),
                     ),
                     child: Center(

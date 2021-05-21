@@ -32,7 +32,7 @@ class DecryptionResult extends StatelessWidget {
                   height: 128,
                   padding: EdgeInsets.symmetric(horizontal: 16),
                   decoration: BoxDecoration(
-                    color: Color(0xFFC4C4C4),
+                    color: Theme.of(context).primaryColor,
                     borderRadius: BorderRadius.circular(8),
                   ),
                   child: TextFormField(
@@ -78,7 +78,7 @@ class DecryptionResult extends StatelessWidget {
                     margin: EdgeInsets.symmetric(vertical: 16),
                     padding: EdgeInsets.symmetric(horizontal: 16),
                     decoration: BoxDecoration(
-                      color: Color(0xFFC4C4C4),
+                      color: Theme.of(context).primaryColor,
                       borderRadius: BorderRadius.circular(32),
                     ),
                     child: Center(
@@ -104,7 +104,7 @@ class DecryptionResult extends StatelessWidget {
                     margin: EdgeInsets.symmetric(vertical: 16),
                     padding: EdgeInsets.symmetric(horizontal: 16),
                     decoration: BoxDecoration(
-                      color: Color(0xFFC4C4C4),
+                      color: Theme.of(context).primaryColor,
                       borderRadius: BorderRadius.circular(32),
                     ),
                     child: Center(

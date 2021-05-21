@@ -5,6 +5,7 @@ import 'package:analyse_app/screen/encryption_result.dart';
 import 'package:dio/dio.dart';
 import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:image_picker/image_picker.dart';
 
 class EncryptionScreen extends StatefulWidget {
@@ -75,7 +76,7 @@ class _EncryptionScreenState extends State<EncryptionScreen> {
                   height: 128,
                   padding: EdgeInsets.symmetric(horizontal: 16),
                   decoration: BoxDecoration(
-                    color: Color(0xFFC4C4C4),
+                    color: Theme.of(context).primaryColor,
                     borderRadius: BorderRadius.circular(8),
                   ),
                   child: Form(
@@ -124,7 +125,7 @@ class _EncryptionScreenState extends State<EncryptionScreen> {
                   width: MediaQuery.of(context).size.width,
                   padding: EdgeInsets.symmetric(horizontal: 16),
                   decoration: BoxDecoration(
-                    color: Color(0xFFC4C4C4),
+                    color: Theme.of(context).primaryColor,
                     borderRadius: BorderRadius.circular(8),
                   ),
                   child: Form(
@@ -183,7 +184,7 @@ class _EncryptionScreenState extends State<EncryptionScreen> {
                                     Icons.image,
                                     size: MediaQuery.of(context).size.height *
                                         0.2,
-                                    color: Colors.grey,
+                                    color: Theme.of(context).primaryColor,
                                   ),
                                   Text(
                                     'Insert Image',
@@ -245,12 +246,29 @@ class _EncryptionScreenState extends State<EncryptionScreen> {
                         "key": cypherKeyController.text,
                         "file": await MultipartFile.fromFile(_image.path),
                       });
-                      var apiResult = await dio.post(Analyse.apiUrl + 'encrypt',
-                          data: formData);
-                      Navigator.of(_keyLoader.currentContext,
-                              rootNavigator: true)
-                          .pop();
+                      var apiResult;
+                      try {
+                        apiResult = await dio.post(Analyse.apiUrl + 'encrypt',
+                            data: formData);
+                      } catch (log) {
+                        Navigator.of(_keyLoader.currentContext,
+                                rootNavigator: true)
+                            .pop();
+                        Fluttertoast.showToast(
+                          msg: 'Plaintext or Key contain unsupported character',
+                          toastLength: Toast.LENGTH_SHORT,
+                          gravity: ToastGravity.BOTTOM,
+                          timeInSecForIosWeb: 1,
+                          backgroundColor: Colors.blue,
+                          textColor: Colors.white,
+                          fontSize: 16.0,
+                        );
+                      }
+                      print(apiResult.toString());
                       if (apiResult.statusCode == 200) {
+                        Navigator.of(_keyLoader.currentContext,
+                                rootNavigator: true)
+                            .pop();
                         Navigator.push(
                           context,
                           MaterialPageRoute(
@@ -259,6 +277,10 @@ class _EncryptionScreenState extends State<EncryptionScreen> {
                             },
                           ),
                         );
+                      } else {
+                        Navigator.of(_keyLoader.currentContext,
+                                rootNavigator: true)
+                            .pop();
                       }
                     }
                   },
@@ -268,7 +290,7 @@ class _EncryptionScreenState extends State<EncryptionScreen> {
                     margin: EdgeInsets.symmetric(vertical: 16),
                     padding: EdgeInsets.symmetric(horizontal: 16),
                     decoration: BoxDecoration(
-                      color: Color(0xFFC4C4C4),
+                      color: Theme.of(context).primaryColor,
                       borderRadius: BorderRadius.circular(32),
                     ),
                     child: Center(
