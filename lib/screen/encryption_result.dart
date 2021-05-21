@@ -47,6 +47,12 @@ class _EncryptionResultState extends State<EncryptionResult> {
   }
 
   @override
+  void dispose() {
+    imageCache.clear();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
@@ -78,7 +84,7 @@ class _EncryptionResultState extends State<EncryptionResult> {
                                 rootNavigator: true)
                             .pop();
                         Fluttertoast.showToast(
-                          msg: "Image can't be downloaded",
+                          msg: log /*"Image can't be downloaded"*/,
                           toastLength: Toast.LENGTH_SHORT,
                           gravity: ToastGravity.BOTTOM,
                           timeInSecForIosWeb: 1,

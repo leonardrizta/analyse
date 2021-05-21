@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class Analyse {
-  static final String apiUrl = "https://analyse-crypt-api.herokuapp.com/";
+  static final String apiUrl = "http://192.168.137.1:5000/";
 
   static Future<void> showLoading({BuildContext context, GlobalKey key}) async {
     return showDialog<void>(

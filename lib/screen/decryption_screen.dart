@@ -100,8 +100,12 @@ class _DecryptionScreenState extends State<DecryptionScreen> {
                         cypherKey.currentState.validate();
                       },
                       validator: (val) {
+                        final alphanumeric =
+                            RegExp(r'^[a-zA-Z0-9!@#$%^&*(),.?: ]+$');
                         if (val.isEmpty) {
                           return "Key cannot be empty";
+                        } else if (!alphanumeric.hasMatch(val)) {
+                          return "Key only support alphanumeric and symbols !@#\$%^&*(),.?:";
                         } else {
                           return null;
                         }
@@ -205,7 +209,8 @@ class _DecryptionScreenState extends State<DecryptionScreen> {
                                 rootNavigator: true)
                             .pop();
                         Fluttertoast.showToast(
-                          msg: 'Plaintext or Key contain unsupported character',
+                          msg:
+                              log /*'Plaintext or Key contain unsupported character'*/,
                           toastLength: Toast.LENGTH_SHORT,
                           gravity: ToastGravity.BOTTOM,
                           timeInSecForIosWeb: 1,

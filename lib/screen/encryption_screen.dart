@@ -90,8 +90,12 @@ class _EncryptionScreenState extends State<EncryptionScreen> {
                       ),
                       controller: plainTextController,
                       validator: (val) {
+                        final alphanumeric =
+                            RegExp(r'^[a-zA-Z0-9!@#$%^&*(),.?: ]+$');
                         if (val.isEmpty) {
                           return "Plain text cannot be empty";
+                        } else if (!alphanumeric.hasMatch(val)) {
+                          return "Plain text only support alphanumeric and symbols !@#\$%^&*(),.?:";
                         } else {
                           return null;
                         }
@@ -150,8 +154,12 @@ class _EncryptionScreenState extends State<EncryptionScreen> {
                         cypherKey.currentState.validate();
                       },
                       validator: (val) {
+                        final alphanumeric =
+                            RegExp(r'^[a-zA-Z0-9!@#$%^&*(),.?: ]+$');
                         if (val.isEmpty) {
                           return "Key cannot be empty";
+                        } else if (!alphanumeric.hasMatch(val)) {
+                          return "Key only support alphanumeric and symbols !@#\$%^&*(),.?:";
                         } else {
                           return null;
                         }
@@ -256,7 +264,7 @@ class _EncryptionScreenState extends State<EncryptionScreen> {
                                 rootNavigator: true)
                             .pop();
                         Fluttertoast.showToast(
-                          msg: 'Server error',
+                          msg: log.toString() /*'Server error'*/,
                           toastLength: Toast.LENGTH_SHORT,
                           gravity: ToastGravity.BOTTOM,
                           timeInSecForIosWeb: 1,
