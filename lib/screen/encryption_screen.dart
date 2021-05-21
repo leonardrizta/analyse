@@ -235,7 +235,10 @@ class _EncryptionScreenState extends State<EncryptionScreen> {
                     loadingContext = context;
                     if (plainTextKey.currentState.validate() ||
                         cypherKey.currentState.validate() ||
-                        !checkImageNull()) {
+                        checkImageNull()) {
+                      print(plainTextKey.currentState.validate());
+                      print(cypherKey.currentState.validate());
+                      print(!checkImageNull());
                       Analyse.showLoading(
                           context: loadingContext, key: _keyLoader);
                       print(checkImageNull());

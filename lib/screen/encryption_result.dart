@@ -17,6 +17,10 @@ class EncryptionResult extends StatefulWidget {
 }
 
 class _EncryptionResultState extends State<EncryptionResult> {
+  //loading data
+  final GlobalKey<State> _keyLoader = new GlobalKey<State>();
+  BuildContext loadingContext;
+
   _save() async {
     String savePath = "storage/emulated/0/Pictures/" + "encrypted_image.png";
     String fileUrl = Analyse.apiUrl + widget.src;
@@ -60,7 +64,29 @@ class _EncryptionResultState extends State<EncryptionResult> {
                 InkWell(
                   onTap: () async {
                     if (await _requestPermission(Permission.storage)) {
-                      bool result = await _save();
+                      loadingContext = context;
+                      Analyse.showLoading(
+                          context: loadingContext, key: _keyLoader);
+                      bool result;
+                      try {
+                        result = await _save();
+                        Navigator.of(_keyLoader.currentContext,
+                                rootNavigator: true)
+                            .pop();
+                      } catch (log) {
+                        Navigator.of(_keyLoader.currentContext,
+                                rootNavigator: true)
+                            .pop();
+                        Fluttertoast.showToast(
+                          msg: "Image can't be downloaded",
+                          toastLength: Toast.LENGTH_SHORT,
+                          gravity: ToastGravity.BOTTOM,
+                          timeInSecForIosWeb: 1,
+                          backgroundColor: Colors.blue,
+                          textColor: Colors.white,
+                          fontSize: 16.0,
+                        );
+                      }
                       if (result) {
                         Fluttertoast.showToast(
                           msg: 'Image saved to Gallery',
