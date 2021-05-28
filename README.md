@@ -1,16 +1,17 @@
-# analyse_app
+# Tugas Besar Mata Kuliah Kriptografi ITERA 2021
 
-A new Flutter application.
+Sebuah Aplikasi Berbasis Mobile Untuk Mengenkripsi Maupun Dekripsi Gambar Dengan Least Significant Bit Dengan
+Menggunakan Algoritma Playfair Cipher.
 
-## Getting Started
+## Project Description
 
-This project is a starting point for a Flutter application.
+Aplikasi ini dibuat menggunakan Flutter sebagai frontend dan Flask sebagai backend dari aplikasinya.
+Repo ini merupakan repository dari Flutter sebagai frontend dari aplikasinya.
 
-A few resources to get you started if this is your first Flutter project:
+## Built With Love By:
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
-
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+* [118140062 Leonard Rizta Anugerah Perdana](https://github.com/leonardrizta)
+* [118140077 Muhammad Tyaz Gagaman](https://github.com/tyaz118140077)
+* [118140083 Ahmad Agung Zefi Syahputra](https://github.com/ahmadagungzs)
+* [118140084 Nazla Andintya Wijaya](https://github.com/nazla118140084)
+* [118140100 Siraz Tri Denira](https://github.com/deniraz)
